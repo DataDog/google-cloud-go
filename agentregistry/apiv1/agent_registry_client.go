@@ -1918,7 +1918,7 @@ func (c *restClient) ListAgents(ctx context.Context, req *agentregistrypb.ListAg
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}
@@ -1961,7 +1961,6 @@ func (c *restClient) ListAgents(ctx context.Context, req *agentregistrypb.ListAg
 func (c *restClient) SearchAgents(ctx context.Context, req *agentregistrypb.SearchAgentsRequest, opts ...gax.CallOption) *AgentIterator {
 	it := &AgentIterator{}
 	req = proto.CloneOf(req)
-	m := protojson.MarshalOptions{AllowPartial: true, UseEnumNumbers: true}
 	unm := protojson.UnmarshalOptions{AllowPartial: true, DiscardUnknown: true}
 	it.InternalFetch = func(pageSize int, pageToken string) ([]*agentregistrypb.Agent, string, error) {
 		resp := &agentregistrypb.SearchAgentsResponse{}
@@ -1973,6 +1972,7 @@ func (c *restClient) SearchAgents(ctx context.Context, req *agentregistrypb.Sear
 		} else if pageSize != 0 {
 			req.PageSize = int32(pageSize)
 		}
+		m := protojson.MarshalOptions{AllowPartial: true, UseEnumNumbers: true}
 		jsonReq, err := m.Marshal(req)
 		if err != nil {
 			return nil, "", err
@@ -1996,7 +1996,7 @@ func (c *restClient) SearchAgents(ctx context.Context, req *agentregistrypb.Sear
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+			httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 			if err != nil {
 				return err
 			}
@@ -2068,11 +2068,10 @@ func (c *restClient) GetAgent(ctx context.Context, req *agentregistrypb.GetAgent
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "GetAgent")
@@ -2134,7 +2133,7 @@ func (c *restClient) ListEndpoints(ctx context.Context, req *agentregistrypb.Lis
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}
@@ -2206,11 +2205,10 @@ func (c *restClient) GetEndpoint(ctx context.Context, req *agentregistrypb.GetEn
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "GetEndpoint")
@@ -2275,7 +2273,7 @@ func (c *restClient) ListMcpServers(ctx context.Context, req *agentregistrypb.Li
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}
@@ -2318,7 +2316,6 @@ func (c *restClient) ListMcpServers(ctx context.Context, req *agentregistrypb.Li
 func (c *restClient) SearchMcpServers(ctx context.Context, req *agentregistrypb.SearchMcpServersRequest, opts ...gax.CallOption) *McpServerIterator {
 	it := &McpServerIterator{}
 	req = proto.CloneOf(req)
-	m := protojson.MarshalOptions{AllowPartial: true, UseEnumNumbers: true}
 	unm := protojson.UnmarshalOptions{AllowPartial: true, DiscardUnknown: true}
 	it.InternalFetch = func(pageSize int, pageToken string) ([]*agentregistrypb.McpServer, string, error) {
 		resp := &agentregistrypb.SearchMcpServersResponse{}
@@ -2330,6 +2327,7 @@ func (c *restClient) SearchMcpServers(ctx context.Context, req *agentregistrypb.
 		} else if pageSize != 0 {
 			req.PageSize = int32(pageSize)
 		}
+		m := protojson.MarshalOptions{AllowPartial: true, UseEnumNumbers: true}
 		jsonReq, err := m.Marshal(req)
 		if err != nil {
 			return nil, "", err
@@ -2353,7 +2351,7 @@ func (c *restClient) SearchMcpServers(ctx context.Context, req *agentregistrypb.
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+			httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 			if err != nil {
 				return err
 			}
@@ -2425,11 +2423,10 @@ func (c *restClient) GetMcpServer(ctx context.Context, req *agentregistrypb.GetM
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "GetMcpServer")
@@ -2491,7 +2488,7 @@ func (c *restClient) ListServices(ctx context.Context, req *agentregistrypb.List
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}
@@ -2563,11 +2560,10 @@ func (c *restClient) GetService(ctx context.Context, req *agentregistrypb.GetSer
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "GetService")
@@ -2630,11 +2626,10 @@ func (c *restClient) CreateService(ctx context.Context, req *agentregistrypb.Cre
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "CreateService")
@@ -2708,11 +2703,10 @@ func (c *restClient) UpdateService(ctx context.Context, req *agentregistrypb.Upd
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("PATCH", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "PATCH", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "UpdateService")
@@ -2775,11 +2769,10 @@ func (c *restClient) DeleteService(ctx context.Context, req *agentregistrypb.Del
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("DELETE", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "DELETE", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "DeleteService")
@@ -2852,7 +2845,7 @@ func (c *restClient) ListBindings(ctx context.Context, req *agentregistrypb.List
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}
@@ -2924,11 +2917,10 @@ func (c *restClient) GetBinding(ctx context.Context, req *agentregistrypb.GetBin
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "GetBinding")
@@ -2991,11 +2983,10 @@ func (c *restClient) CreateBinding(ctx context.Context, req *agentregistrypb.Cre
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "CreateBinding")
@@ -3069,11 +3060,10 @@ func (c *restClient) UpdateBinding(ctx context.Context, req *agentregistrypb.Upd
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("PATCH", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "PATCH", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "UpdateBinding")
@@ -3136,11 +3126,10 @@ func (c *restClient) DeleteBinding(ctx context.Context, req *agentregistrypb.Del
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("DELETE", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "DELETE", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "DeleteBinding")
@@ -3213,7 +3202,7 @@ func (c *restClient) FetchAvailableBindings(ctx context.Context, req *agentregis
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}
@@ -3282,11 +3271,10 @@ func (c *restClient) GetLocation(ctx context.Context, req *locationpb.GetLocatio
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "GetLocation")
@@ -3363,7 +3351,7 @@ func (c *restClient) ListLocations(ctx context.Context, req *locationpb.ListLoca
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}
@@ -3435,11 +3423,10 @@ func (c *restClient) CancelOperation(ctx context.Context, req *longrunningpb.Can
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		_, err = executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "CancelOperation")
@@ -3474,11 +3461,10 @@ func (c *restClient) DeleteOperation(ctx context.Context, req *longrunningpb.Del
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("DELETE", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "DELETE", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		_, err = executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "DeleteOperation")
@@ -3516,11 +3502,10 @@ func (c *restClient) GetOperation(ctx context.Context, req *longrunningpb.GetOpe
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "GetOperation")
@@ -3585,7 +3570,7 @@ func (c *restClient) ListOperations(ctx context.Context, req *longrunningpb.List
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}

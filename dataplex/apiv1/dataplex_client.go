@@ -2427,11 +2427,10 @@ func (c *restClient) CreateLake(ctx context.Context, req *dataplexpb.CreateLakeR
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "CreateLake")
@@ -2505,11 +2504,10 @@ func (c *restClient) UpdateLake(ctx context.Context, req *dataplexpb.UpdateLakeR
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("PATCH", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "PATCH", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "UpdateLake")
@@ -2570,11 +2568,10 @@ func (c *restClient) DeleteLake(ctx context.Context, req *dataplexpb.DeleteLakeR
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("DELETE", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "DELETE", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "DeleteLake")
@@ -2647,7 +2644,7 @@ func (c *restClient) ListLakes(ctx context.Context, req *dataplexpb.ListLakesReq
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}
@@ -2719,11 +2716,10 @@ func (c *restClient) GetLake(ctx context.Context, req *dataplexpb.GetLakeRequest
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "GetLake")
@@ -2782,7 +2778,7 @@ func (c *restClient) ListLakeActions(ctx context.Context, req *dataplexpb.ListLa
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}
@@ -2864,11 +2860,10 @@ func (c *restClient) CreateZone(ctx context.Context, req *dataplexpb.CreateZoneR
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "CreateZone")
@@ -2942,11 +2937,10 @@ func (c *restClient) UpdateZone(ctx context.Context, req *dataplexpb.UpdateZoneR
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("PATCH", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "PATCH", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "UpdateZone")
@@ -3007,11 +3001,10 @@ func (c *restClient) DeleteZone(ctx context.Context, req *dataplexpb.DeleteZoneR
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("DELETE", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "DELETE", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "DeleteZone")
@@ -3084,7 +3077,7 @@ func (c *restClient) ListZones(ctx context.Context, req *dataplexpb.ListZonesReq
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}
@@ -3156,11 +3149,10 @@ func (c *restClient) GetZone(ctx context.Context, req *dataplexpb.GetZoneRequest
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "GetZone")
@@ -3219,7 +3211,7 @@ func (c *restClient) ListZoneActions(ctx context.Context, req *dataplexpb.ListZo
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}
@@ -3301,11 +3293,10 @@ func (c *restClient) CreateAsset(ctx context.Context, req *dataplexpb.CreateAsse
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "CreateAsset")
@@ -3379,11 +3370,10 @@ func (c *restClient) UpdateAsset(ctx context.Context, req *dataplexpb.UpdateAsse
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("PATCH", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "PATCH", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "UpdateAsset")
@@ -3444,11 +3434,10 @@ func (c *restClient) DeleteAsset(ctx context.Context, req *dataplexpb.DeleteAsse
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("DELETE", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "DELETE", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "DeleteAsset")
@@ -3521,7 +3510,7 @@ func (c *restClient) ListAssets(ctx context.Context, req *dataplexpb.ListAssetsR
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}
@@ -3593,11 +3582,10 @@ func (c *restClient) GetAsset(ctx context.Context, req *dataplexpb.GetAssetReque
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "GetAsset")
@@ -3656,7 +3644,7 @@ func (c *restClient) ListAssetActions(ctx context.Context, req *dataplexpb.ListA
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}
@@ -3738,11 +3726,10 @@ func (c *restClient) CreateTask(ctx context.Context, req *dataplexpb.CreateTaskR
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "CreateTask")
@@ -3816,11 +3803,10 @@ func (c *restClient) UpdateTask(ctx context.Context, req *dataplexpb.UpdateTaskR
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("PATCH", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "PATCH", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "UpdateTask")
@@ -3880,11 +3866,10 @@ func (c *restClient) DeleteTask(ctx context.Context, req *dataplexpb.DeleteTaskR
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("DELETE", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "DELETE", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "DeleteTask")
@@ -3957,7 +3942,7 @@ func (c *restClient) ListTasks(ctx context.Context, req *dataplexpb.ListTasksReq
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}
@@ -4029,11 +4014,10 @@ func (c *restClient) GetTask(ctx context.Context, req *dataplexpb.GetTaskRequest
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "GetTask")
@@ -4092,7 +4076,7 @@ func (c *restClient) ListJobs(ctx context.Context, req *dataplexpb.ListJobsReque
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}
@@ -4170,11 +4154,10 @@ func (c *restClient) RunTask(ctx context.Context, req *dataplexpb.RunTaskRequest
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "RunTask")
@@ -4227,11 +4210,10 @@ func (c *restClient) GetJob(ctx context.Context, req *dataplexpb.GetJobRequest, 
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "GetJob")
@@ -4287,11 +4269,10 @@ func (c *restClient) CancelJob(ctx context.Context, req *dataplexpb.CancelJobReq
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		_, err = executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "CancelJob")
@@ -4329,11 +4310,10 @@ func (c *restClient) GetLocation(ctx context.Context, req *locationpb.GetLocatio
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "GetLocation")
@@ -4410,7 +4390,7 @@ func (c *restClient) ListLocations(ctx context.Context, req *locationpb.ListLoca
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}
@@ -4486,11 +4466,10 @@ func (c *restClient) GetIamPolicy(ctx context.Context, req *iampb.GetIamPolicyRe
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "GetIamPolicy")
@@ -4553,11 +4532,10 @@ func (c *restClient) SetIamPolicy(ctx context.Context, req *iampb.SetIamPolicyRe
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "SetIamPolicy")
@@ -4622,11 +4600,10 @@ func (c *restClient) TestIamPermissions(ctx context.Context, req *iampb.TestIamP
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "TestIamPermissions")
@@ -4679,11 +4656,10 @@ func (c *restClient) CancelOperation(ctx context.Context, req *longrunningpb.Can
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		_, err = executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "CancelOperation")
@@ -4718,11 +4694,10 @@ func (c *restClient) DeleteOperation(ctx context.Context, req *longrunningpb.Del
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("DELETE", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "DELETE", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		_, err = executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "DeleteOperation")
@@ -4760,11 +4735,10 @@ func (c *restClient) GetOperation(ctx context.Context, req *longrunningpb.GetOpe
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "GetOperation")
@@ -4829,7 +4803,7 @@ func (c *restClient) ListOperations(ctx context.Context, req *longrunningpb.List
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}

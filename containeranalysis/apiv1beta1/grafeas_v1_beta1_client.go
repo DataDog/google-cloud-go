@@ -1174,11 +1174,10 @@ func (c *grafeasV1Beta1RESTClient) GetOccurrence(ctx context.Context, req *grafe
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "GetOccurrence")
@@ -1240,7 +1239,7 @@ func (c *grafeasV1Beta1RESTClient) ListOccurrences(ctx context.Context, req *gra
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}
@@ -1308,11 +1307,10 @@ func (c *grafeasV1Beta1RESTClient) DeleteOccurrence(ctx context.Context, req *gr
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("DELETE", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "DELETE", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		_, err = executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "DeleteOccurrence")
@@ -1357,11 +1355,10 @@ func (c *grafeasV1Beta1RESTClient) CreateOccurrence(ctx context.Context, req *gr
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "CreateOccurrence")
@@ -1417,11 +1414,10 @@ func (c *grafeasV1Beta1RESTClient) BatchCreateOccurrences(ctx context.Context, r
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "BatchCreateOccurrences")
@@ -1485,11 +1481,10 @@ func (c *grafeasV1Beta1RESTClient) UpdateOccurrence(ctx context.Context, req *gr
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("PATCH", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "PATCH", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "UpdateOccurrence")
@@ -1540,11 +1535,10 @@ func (c *grafeasV1Beta1RESTClient) GetOccurrenceNote(ctx context.Context, req *g
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "GetOccurrenceNote")
@@ -1594,11 +1588,10 @@ func (c *grafeasV1Beta1RESTClient) GetNote(ctx context.Context, req *grafeaspb.G
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "GetNote")
@@ -1660,7 +1653,7 @@ func (c *grafeasV1Beta1RESTClient) ListNotes(ctx context.Context, req *grafeaspb
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}
@@ -1726,11 +1719,10 @@ func (c *grafeasV1Beta1RESTClient) DeleteNote(ctx context.Context, req *grafeasp
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("DELETE", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "DELETE", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		_, err = executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "DeleteNote")
@@ -1778,11 +1770,10 @@ func (c *grafeasV1Beta1RESTClient) CreateNote(ctx context.Context, req *grafeasp
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "CreateNote")
@@ -1838,11 +1829,10 @@ func (c *grafeasV1Beta1RESTClient) BatchCreateNotes(ctx context.Context, req *gr
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "BatchCreateNotes")
@@ -1906,11 +1896,10 @@ func (c *grafeasV1Beta1RESTClient) UpdateNote(ctx context.Context, req *grafeasp
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("PATCH", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "PATCH", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "UpdateNote")
@@ -1974,7 +1963,7 @@ func (c *grafeasV1Beta1RESTClient) ListNoteOccurrences(ctx context.Context, req 
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}
@@ -2046,11 +2035,10 @@ func (c *grafeasV1Beta1RESTClient) GetVulnerabilityOccurrencesSummary(ctx contex
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "GetVulnerabilityOccurrencesSummary")

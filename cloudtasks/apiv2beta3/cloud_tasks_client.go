@@ -1744,7 +1744,7 @@ func (c *restClient) ListQueues(ctx context.Context, req *cloudtaskspb.ListQueue
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}
@@ -1823,11 +1823,10 @@ func (c *restClient) GetQueue(ctx context.Context, req *cloudtaskspb.GetQueueReq
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "GetQueue")
@@ -1898,11 +1897,10 @@ func (c *restClient) CreateQueue(ctx context.Context, req *cloudtaskspb.CreateQu
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "CreateQueue")
@@ -1980,11 +1978,10 @@ func (c *restClient) UpdateQueue(ctx context.Context, req *cloudtaskspb.UpdateQu
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("PATCH", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "PATCH", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "UpdateQueue")
@@ -2053,11 +2050,10 @@ func (c *restClient) DeleteQueue(ctx context.Context, req *cloudtaskspb.DeleteQu
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("DELETE", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "DELETE", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		_, err = executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "DeleteQueue")
@@ -2109,11 +2105,10 @@ func (c *restClient) PurgeQueue(ctx context.Context, req *cloudtaskspb.PurgeQueu
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "PurgeQueue")
@@ -2179,11 +2174,10 @@ func (c *restClient) PauseQueue(ctx context.Context, req *cloudtaskspb.PauseQueu
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "PauseQueue")
@@ -2256,11 +2250,10 @@ func (c *restClient) ResumeQueue(ctx context.Context, req *cloudtaskspb.ResumeQu
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "ResumeQueue")
@@ -2327,11 +2320,10 @@ func (c *restClient) GetIamPolicy(ctx context.Context, req *iampb.GetIamPolicyRe
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "GetIamPolicy")
@@ -2400,11 +2392,10 @@ func (c *restClient) SetIamPolicy(ctx context.Context, req *iampb.SetIamPolicyRe
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "SetIamPolicy")
@@ -2470,11 +2461,10 @@ func (c *restClient) TestIamPermissions(ctx context.Context, req *iampb.TestIamP
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "TestIamPermissions")
@@ -2544,7 +2534,7 @@ func (c *restClient) ListTasks(ctx context.Context, req *cloudtaskspb.ListTasksR
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}
@@ -2623,11 +2613,10 @@ func (c *restClient) GetTask(ctx context.Context, req *cloudtaskspb.GetTaskReque
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "GetTask")
@@ -2690,11 +2679,10 @@ func (c *restClient) CreateTask(ctx context.Context, req *cloudtaskspb.CreateTas
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "CreateTask")
@@ -2756,11 +2744,10 @@ func (c *restClient) BatchCreateTasks(ctx context.Context, req *cloudtaskspb.Bat
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "BatchCreateTasks")
@@ -2822,11 +2809,10 @@ func (c *restClient) DeleteTask(ctx context.Context, req *cloudtaskspb.DeleteTas
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("DELETE", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "DELETE", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		_, err = executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "DeleteTask")
@@ -2876,11 +2862,10 @@ func (c *restClient) BatchDeleteTasks(ctx context.Context, req *cloudtaskspb.Bat
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "BatchDeleteTasks")
@@ -2973,11 +2958,10 @@ func (c *restClient) RunTask(ctx context.Context, req *cloudtaskspb.RunTaskReque
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "RunTask")
@@ -3046,11 +3030,10 @@ func (c *restClient) UpdateCmekConfig(ctx context.Context, req *cloudtaskspb.Upd
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("PATCH", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "PATCH", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "UpdateCmekConfig")
@@ -3106,11 +3089,10 @@ func (c *restClient) GetCmekConfig(ctx context.Context, req *cloudtaskspb.GetCme
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "GetCmekConfig")
@@ -3160,11 +3142,10 @@ func (c *restClient) GetLocation(ctx context.Context, req *locationpb.GetLocatio
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "GetLocation")
@@ -3241,7 +3222,7 @@ func (c *restClient) ListLocations(ctx context.Context, req *locationpb.ListLoca
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}
@@ -3310,11 +3291,10 @@ func (c *restClient) GetOperation(ctx context.Context, req *longrunningpb.GetOpe
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "GetOperation")

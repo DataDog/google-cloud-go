@@ -391,7 +391,7 @@ func (c *healthChecksRESTClient) AggregatedList(ctx context.Context, req *comput
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}
@@ -472,11 +472,10 @@ func (c *healthChecksRESTClient) Delete(ctx context.Context, req *computepb.Dele
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("DELETE", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "DELETE", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "Delete")
@@ -531,11 +530,10 @@ func (c *healthChecksRESTClient) Get(ctx context.Context, req *computepb.GetHeal
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "Get")
@@ -598,11 +596,10 @@ func (c *healthChecksRESTClient) Insert(ctx context.Context, req *computepb.Inse
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "Insert")
@@ -677,7 +674,7 @@ func (c *healthChecksRESTClient) List(ctx context.Context, req *computepb.ListHe
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}
@@ -761,11 +758,10 @@ func (c *healthChecksRESTClient) Patch(ctx context.Context, req *computepb.Patch
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("PATCH", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "PATCH", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "Patch")
@@ -827,11 +823,10 @@ func (c *healthChecksRESTClient) TestIamPermissions(ctx context.Context, req *co
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "TestIamPermissions")
@@ -894,11 +889,10 @@ func (c *healthChecksRESTClient) Update(ctx context.Context, req *computepb.Upda
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("PUT", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "PUT", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "Update")

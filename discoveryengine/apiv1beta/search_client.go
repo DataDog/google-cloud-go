@@ -684,7 +684,6 @@ func (c *searchGRPCClient) ListOperations(ctx context.Context, req *longrunningp
 func (c *searchRESTClient) Search(ctx context.Context, req *discoveryenginepb.SearchRequest, opts ...gax.CallOption) *SearchResponse_SearchResultIterator {
 	it := &SearchResponse_SearchResultIterator{}
 	req = proto.CloneOf(req)
-	m := protojson.MarshalOptions{AllowPartial: true, UseEnumNumbers: true}
 	unm := protojson.UnmarshalOptions{AllowPartial: true, DiscardUnknown: true}
 	it.InternalFetch = func(pageSize int, pageToken string) ([]*discoveryenginepb.SearchResponse_SearchResult, string, error) {
 		resp := &discoveryenginepb.SearchResponse{}
@@ -696,6 +695,7 @@ func (c *searchRESTClient) Search(ctx context.Context, req *discoveryenginepb.Se
 		} else if pageSize != 0 {
 			req.PageSize = int32(pageSize)
 		}
+		m := protojson.MarshalOptions{AllowPartial: true, UseEnumNumbers: true}
 		jsonReq, err := m.Marshal(req)
 		if err != nil {
 			return nil, "", err
@@ -719,7 +719,7 @@ func (c *searchRESTClient) Search(ctx context.Context, req *discoveryenginepb.Se
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+			httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 			if err != nil {
 				return err
 			}
@@ -774,7 +774,6 @@ func (c *searchRESTClient) Search(ctx context.Context, req *discoveryenginepb.Se
 func (c *searchRESTClient) SearchLite(ctx context.Context, req *discoveryenginepb.SearchRequest, opts ...gax.CallOption) *SearchResponse_SearchResultIterator {
 	it := &SearchResponse_SearchResultIterator{}
 	req = proto.CloneOf(req)
-	m := protojson.MarshalOptions{AllowPartial: true, UseEnumNumbers: true}
 	unm := protojson.UnmarshalOptions{AllowPartial: true, DiscardUnknown: true}
 	it.InternalFetch = func(pageSize int, pageToken string) ([]*discoveryenginepb.SearchResponse_SearchResult, string, error) {
 		resp := &discoveryenginepb.SearchResponse{}
@@ -786,6 +785,7 @@ func (c *searchRESTClient) SearchLite(ctx context.Context, req *discoveryenginep
 		} else if pageSize != 0 {
 			req.PageSize = int32(pageSize)
 		}
+		m := protojson.MarshalOptions{AllowPartial: true, UseEnumNumbers: true}
 		jsonReq, err := m.Marshal(req)
 		if err != nil {
 			return nil, "", err
@@ -809,7 +809,7 @@ func (c *searchRESTClient) SearchLite(ctx context.Context, req *discoveryenginep
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+			httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 			if err != nil {
 				return err
 			}
@@ -881,11 +881,10 @@ func (c *searchRESTClient) CancelOperation(ctx context.Context, req *longrunning
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		_, err = executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "CancelOperation")
@@ -923,11 +922,10 @@ func (c *searchRESTClient) GetOperation(ctx context.Context, req *longrunningpb.
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+		httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, nil, "GetOperation")
@@ -992,7 +990,7 @@ func (c *searchRESTClient) ListOperations(ctx context.Context, req *longrunningp
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}

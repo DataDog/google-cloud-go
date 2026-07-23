@@ -405,7 +405,6 @@ func (c *reportGRPCClient) Search(ctx context.Context, req *reportspb.SearchRequ
 func (c *reportRESTClient) Search(ctx context.Context, req *reportspb.SearchRequest, opts ...gax.CallOption) *ReportRowIterator {
 	it := &ReportRowIterator{}
 	req = proto.CloneOf(req)
-	m := protojson.MarshalOptions{AllowPartial: true, UseEnumNumbers: true}
 	unm := protojson.UnmarshalOptions{AllowPartial: true, DiscardUnknown: true}
 	it.InternalFetch = func(pageSize int, pageToken string) ([]*reportspb.ReportRow, string, error) {
 		resp := &reportspb.SearchResponse{}
@@ -417,6 +416,7 @@ func (c *reportRESTClient) Search(ctx context.Context, req *reportspb.SearchRequ
 		} else if pageSize != 0 {
 			req.PageSize = int32(pageSize)
 		}
+		m := protojson.MarshalOptions{AllowPartial: true, UseEnumNumbers: true}
 		jsonReq, err := m.Marshal(req)
 		if err != nil {
 			return nil, "", err
@@ -440,7 +440,7 @@ func (c *reportRESTClient) Search(ctx context.Context, req *reportspb.SearchRequ
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+			httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 			if err != nil {
 				return err
 			}

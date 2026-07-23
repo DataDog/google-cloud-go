@@ -437,7 +437,7 @@ func (c *restClient) ListQuotaGroups(ctx context.Context, req *quotapb.ListQuota
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}

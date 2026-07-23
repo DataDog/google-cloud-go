@@ -409,7 +409,6 @@ func (c *predictionGRPCClient) Predict(ctx context.Context, req *recommendatione
 func (c *predictionRESTClient) Predict(ctx context.Context, req *recommendationenginepb.PredictRequest, opts ...gax.CallOption) *PredictResponse_PredictionResultIterator {
 	it := &PredictResponse_PredictionResultIterator{}
 	req = proto.CloneOf(req)
-	m := protojson.MarshalOptions{AllowPartial: true, UseEnumNumbers: true}
 	unm := protojson.UnmarshalOptions{AllowPartial: true, DiscardUnknown: true}
 	it.InternalFetch = func(pageSize int, pageToken string) ([]*recommendationenginepb.PredictResponse_PredictionResult, string, error) {
 		resp := &recommendationenginepb.PredictResponse{}
@@ -421,6 +420,7 @@ func (c *predictionRESTClient) Predict(ctx context.Context, req *recommendatione
 		} else if pageSize != 0 {
 			req.PageSize = int32(pageSize)
 		}
+		m := protojson.MarshalOptions{AllowPartial: true, UseEnumNumbers: true}
 		jsonReq, err := m.Marshal(req)
 		if err != nil {
 			return nil, "", err
@@ -444,7 +444,7 @@ func (c *predictionRESTClient) Predict(ctx context.Context, req *recommendatione
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+			httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 			if err != nil {
 				return err
 			}

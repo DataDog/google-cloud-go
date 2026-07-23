@@ -423,7 +423,7 @@ func (c *keyDashboardRESTClient) ListCryptoKeys(ctx context.Context, req *invent
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}

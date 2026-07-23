@@ -696,7 +696,7 @@ func (c *gkeInferenceQuickstartRESTClient) FetchModels(ctx context.Context, req 
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}
@@ -776,7 +776,7 @@ func (c *gkeInferenceQuickstartRESTClient) FetchModelServers(ctx context.Context
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}
@@ -862,7 +862,7 @@ func (c *gkeInferenceQuickstartRESTClient) FetchModelServerVersions(ctx context.
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("GET", baseUrl.String(), nil)
+			httpReq, err := http.NewRequestWithContext(ctx, "GET", baseUrl.String(), nil)
 			if err != nil {
 				return err
 			}
@@ -915,7 +915,6 @@ func (c *gkeInferenceQuickstartRESTClient) FetchModelServerVersions(ctx context.
 func (c *gkeInferenceQuickstartRESTClient) FetchProfiles(ctx context.Context, req *gkerecommenderpb.FetchProfilesRequest, opts ...gax.CallOption) *ProfileIterator {
 	it := &ProfileIterator{}
 	req = proto.CloneOf(req)
-	m := protojson.MarshalOptions{AllowPartial: true, UseEnumNumbers: true}
 	unm := protojson.UnmarshalOptions{AllowPartial: true, DiscardUnknown: true}
 	it.InternalFetch = func(pageSize int, pageToken string) ([]*gkerecommenderpb.Profile, string, error) {
 		resp := &gkerecommenderpb.FetchProfilesResponse{}
@@ -927,6 +926,7 @@ func (c *gkeInferenceQuickstartRESTClient) FetchProfiles(ctx context.Context, re
 		} else if pageSize != 0 {
 			req.PageSize = proto.Int32(int32(pageSize))
 		}
+		m := protojson.MarshalOptions{AllowPartial: true, UseEnumNumbers: true}
 		jsonReq, err := m.Marshal(req)
 		if err != nil {
 			return nil, "", err
@@ -950,7 +950,7 @@ func (c *gkeInferenceQuickstartRESTClient) FetchProfiles(ctx context.Context, re
 			if settings.Path != "" {
 				baseUrl.Path = settings.Path
 			}
-			httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+			httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 			if err != nil {
 				return err
 			}
@@ -1027,11 +1027,10 @@ func (c *gkeInferenceQuickstartRESTClient) GenerateOptimizedManifest(ctx context
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "GenerateOptimizedManifest")
@@ -1086,11 +1085,10 @@ func (c *gkeInferenceQuickstartRESTClient) FetchBenchmarkingData(ctx context.Con
 		if settings.Path != "" {
 			baseUrl.Path = settings.Path
 		}
-		httpReq, err := http.NewRequest("POST", baseUrl.String(), bytes.NewReader(jsonReq))
+		httpReq, err := http.NewRequestWithContext(ctx, "POST", baseUrl.String(), bytes.NewReader(jsonReq))
 		if err != nil {
 			return err
 		}
-		httpReq = httpReq.WithContext(ctx)
 		httpReq.Header = headers
 
 		buf, err := executeHTTPRequest(ctx, c.httpClient, httpReq, c.logger, jsonReq, "FetchBenchmarkingData")
